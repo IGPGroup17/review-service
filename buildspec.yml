@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+      - sam validate
+  build:
+    commands:
+      - sam build
+  post_build:
+    commands:
+      - sam deploy --no-confirm-changeset
