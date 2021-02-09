@@ -1,0 +1,53 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  review-service
+
+  Sample SAM Template for review-service
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 20
+
+Resources:
+  ReviewServiceFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      ImageUri: "reviewservicefunction:java11-maven-v1"
+      PackageType: Image
+      Events:
+        BaseOrganiser:
+          Type: Api
+          Properties:
+            Path: /v1/reviews
+            Method: any
+        ReviewsByOrganiser:
+          Type: Api
+          Properties:
+            Path: /v1/reviews/organiser/{id}
+            Method: get
+        CreateReview:
+          Type: Api
+          Properties:
+            Path: /v1/reviews/create/
+            Method: post
+        DeleteReview:
+          Type: Api
+          Properties:
+            Path: /v1/reviews/delete/{id}
+            Method: delete
+        ReviewsByCreator:
+          Type: Api
+          Properties:
+            Path: /v1/reviews/creator/{id}
+            Method: get
+        UpdateReview:
+          Type: Api
+          Properties:
+            Path: /v1/reviews/update/{id}
+            Method: post
+    Metadata:
+      DockerTag: java11-maven-v1
+      DockerContext: ./ReviewServiceFunction
+      Dockerfile: Dockerfile
