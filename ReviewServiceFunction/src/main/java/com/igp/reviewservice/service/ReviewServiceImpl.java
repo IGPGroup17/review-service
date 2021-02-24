@@ -1,9 +1,9 @@
-package com.igp.reviewservice.services;
+package com.igp.reviewservice.service;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
-import com.igp.reviewservice.models.Examples;
-import com.igp.reviewservice.models.Review;
+import com.igp.reviewservice.model.Examples;
+import com.igp.reviewservice.model.Review;
 import com.igp.reviewservice.util.ResponseEntity;
 
 import java.util.List;
